@@ -1,0 +1,83 @@
+﻿@page "/login"
+@layout AppLayout
+@inherits ComponentBase
+
+@using System.ComponentModel.DataAnnotations
+@inject IAuthenticationService AuthenticationService
+@inject NavigationManager NavigationManager
+
+<link href="/css/payfreee.min.css" rel="stylesheet" />
+
+<div class="payfreee-page-container payfreee-login-form">
+	<div class="card no-border half-box">
+		<div class="card-body">
+			<h2 class="text-center">Log in</h2>
+
+			<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+				<DataAnnotationsValidator />
+				@if (!string.IsNullOrEmpty(error))
+				{
+					<div class="alert alert-danger mt-3 mb-0">@error</div>
+				}
+				<div class="form-group">
+					<InputText id="Username" placeholder="Email" @bind-Value="model.Email" class="form-control" />
+					<ValidationMessage For="@(() => model.Email)" />
+				</div>
+				<div class="form-group">
+					<InputText id="Password" placeholder="Password" type="password" class="form-control" @bind-Value="model.Password" />
+					<ValidationMessage For="@(() => model.Password)" />
+				</div>
+				<div class="submit-container text-right">
+					<button class="btn btn-primary" disabled="@loading" type="submit">Login</button>
+				</div>
+				<a href="/signup">
+					<!--!-->
+					New to WebApp? Sign up
+				</a>
+			</EditForm>
+		</div>
+	</div>
+</div>
+
+@code{
+
+	private UserLoginModel model = new UserLoginModel();
+
+	[Parameter]
+	public string Id { get; set; }
+
+	public string SignUpUrl { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		SignUpUrl = string.Format("/signup{0}", string.IsNullOrWhiteSpace(Id) ? "" : "/" + Id);
+	}
+
+	private bool loading;
+	private string error;
+
+	protected override void OnInitialized()
+	{
+		// redirect to home if already logged in
+		if (AuthenticationService.User != null)
+		{
+			NavigationManager.NavigateTo("");
+		}
+	}
+
+	private async void HandleValidSubmit()
+	{
+		loading = true;
+		try
+		{
+			await AuthenticationService.Login(model.Email, model.Password);
+			NavigationManager.NavigateTo("/");
+		}
+		catch (Exception ex)
+		{
+			error = ex.Message;
+			loading = false;
+			StateHasChanged();
+		}
+	}
+}

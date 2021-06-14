@@ -1,0 +1,24 @@
+﻿[
+  {
+    "inputFile": "wwwroot/css/site.scss",
+    "minify": {
+      "enabled": true
+    },
+		"options": {
+			"relativeUrls": false,
+			"sourceMap": true
+		},
+    "outputFile": "wwwroot/css/site.css"
+  },
+  {
+    "outputFile": "wwwroot/css/payfreee.css",
+    "inputFile": "wwwroot/css/payfreee.scss",
+    "minify": {
+      "enabled": true
+    },
+    "options": {
+      "sourceMap": true,
+      "relativeUrls": false
+    }
+  }
+]

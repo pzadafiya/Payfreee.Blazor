@@ -1,0 +1,34 @@
+﻿@import "mm-vertical.scss";
+
+.sidebar-nav {
+    background: none;
+}
+
+.sidebar-nav ul {
+    background: none;
+}
+
+.sidebar-nav .metismenu {
+    background: none;
+}
+
+.sidebar-nav .metismenu li:first-child {
+    margin-top: 0px;
+}
+
+.sidebar-nav .metismenu a {
+    color: var(--sidebar-menu-color);
+}
+
+.sidebar-nav .metismenu a:hover,
+.sidebar-nav .metismenu a:focus,
+.sidebar-nav .metismenu a:active {
+    color: var(--sidebar-active-menu-color);
+    background: none;
+}
+
+/* Custom added */
+.sidebar-nav .metismenu a.active {
+    color: var(--sidebar-active-menu-color);
+    background: var(--sidebar-active-menu-background-color);
+}

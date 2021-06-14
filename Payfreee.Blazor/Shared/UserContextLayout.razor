@@ -1,0 +1,160 @@
+﻿@using System.Threading
+@inherits LayoutComponentBase
+@layout Layout
+@inject IJSRuntime JSRuntime
+@attribute [Authorize]
+
+<div class="d-flex" id="wrapper">
+
+	<!-- Sidebar - Start -->
+	<div class="vertical-menu" id="sidebar">
+		<div class="sidebar-heading d-flex">
+			<div class="large-logo">
+				<img src="/img/logo.png" />
+			</div><div class="small-logo">PF</div>
+		</div>
+		<nav class="sidebar-nav">
+			<ul class="metismenu" id="side-menu">
+				<li class="mm-active">
+					<a href="/dashboard" class="active"><i class="fas fa-th-large fa-fw fa-lg mr-2"></i> <span>Dashboard</span></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<!-- Sidebar - End -->
+	<!-- Page Wrapper - Start -->
+	<div class="page-content-wrapper">
+
+		<!-- Header Navigation - Start -->
+		<!-- toast container- Start -->
+		<Toast Position="ToastPosition.TopRight"
+			   Timeout="10"
+			   SuccessClass="success-toast-override"
+			   SuccessIconClass="fa fa-check"
+			   ErrorIconClass="fa fa-exclamation-circle"
+			   InfoIconClass="fa fa-info"
+			   WarningIconClass="fa fa-exclamation">
+		</Toast>
+		<!-- toast container - Start -->
+
+		<nav class="navbar navbar-expand-lg">
+			<div class="d-flex">
+				<div class="small-logo cursor-pointer">TV</div>
+				<span class="menu-toggle-wrapper" @onclick="(() => ToggleSideBar())"><i class="fas fa-bars cursor-pointer menu-toggle-icon"></i></span>
+			</div>
+
+			<div class="d-flex">
+				<div class="dropdown dropleft">
+					<a class="nav-link noti-icon cls-dropdown-container" href="javascript:;" onclick="toggleDropdown(this);" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="far fa-bell"></i>
+						@if (_notificationCount > 0)
+						{
+							<span class="badge badge-danger badge-pill">@_notificationCount</span>
+						}
+					</a>
+					<div class="dropdown-menu dropdown-menu-lg p-0" aria-labelledby="notificationDropdown">
+						<div class="notification-header-container">
+							<div class="card notification">
+								<div class="card-body p-0">
+									<a href="javascript:void(0)" class="notification-item">
+										<div class="notification-wrapper">
+											<div class="notification-avatar ml-2 mr-3">
+												<span class="avatar-title bg-warning rounded-circle font-16"><i class="fas fa-envelope"></i></span>
+											</div>
+											<div class="notification-content">
+												<h6 class="card-title m-0 mb-1">Subject</h6>
+												<p class="card-text">Notification text con</p>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="card-footer text-center">
+									<button type="button" class="btn btn-link">View all</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="dropdown dropleft cls-dropdown-container">
+					<a class="nav-link" href="javascript:;" onclick="toggleDropdown(this);" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="far fa-user-circle"></i>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="userDropdown">
+						<a class="dropdown-item" href="user/@_userId"><i class="fas fa-user-circle mr-2"></i> Profile</a>
+						<a class="dropdown-item" href="/theme"><i class="fas fa-desktop mr-2"></i> Theme</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- Header Navigation - End -->
+		<!-- Page Content - Start -->
+		<div class="container-fluid m-0">
+			@Body
+		</div>
+		<!-- Page Content - End -->
+		<!-- Footer - Start -->
+		<div class="page-footer">
+			© 2020 OrionsWave, LLC.
+		</div>
+		<!-- Footer - End -->
+	</div>
+	<!-- Page Wrapper - End -->
+</div>
+
+@code
+{
+	private string _userName;
+	private string _userId;
+	private string _userPhotoUrl;
+	private bool _hasPendingNotifications;
+	private int _notificationCount { get; set; } = 1;
+
+	[Inject] NavigationManager NavigationManager { get; set; }
+	protected override async Task OnInitializedAsync()
+	{
+		await base.OnInitializedAsync();
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		// execute conditionally for loading data, otherwise this will load
+		// every time the page refreshes
+		if (firstRender)
+		{
+			// Do work to load page data and set properties
+			await JSRuntime.InvokeVoidAsync("init");
+		}
+	}
+
+	private void ToggleSideBar()
+	{
+		JSRuntime.InvokeVoidAsync("toggleSideBar");
+	}
+
+	private string GetOnclickHandler(string path)
+	{
+		if (IsSelected(path)) return "return false;";
+
+		return "return true";
+	}
+
+	private string GetCssClass(string path)
+	{
+		if (IsSelected(path)) return "selected";
+
+		return "";
+	}
+
+	private bool IsSelected(string path)
+	{
+		if (string.IsNullOrWhiteSpace(path)) throw new ArgumentException(nameof(path));
+
+		var currentUrl = new Uri(NavigationManager.Uri);
+		var currentPath = currentUrl.AbsolutePath;
+
+		return currentPath.Contains(path, StringComparison.InvariantCultureIgnoreCase);
+	}
+}

@@ -1,0 +1,46 @@
+﻿/* TODO: Need to remove with css isolation */
+.payfreee-theme-form-container .themes {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.payfreee-theme-form-container .theme {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	border: 2px solid var(--theme-border-color);
+	border-radius: 0.5rem;
+	margin: 0 1rem;
+	width: 33%;
+	cursor: pointer;
+}
+
+.payfreee-theme-form-container .selected {
+	border: 2px solid var(--theme-highlight-border-color);
+}
+
+.payfreee-theme-form-container .theme-img-container {
+	position: relative;
+	width: 100%;
+	padding-top: 150%;
+	/* 2:3 Aspect Ratio */
+}
+
+.payfreee-theme-form-container .theme-img-container img {
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+}
+
+.payfreee-theme-form-container span {
+	display: none;
+}

@@ -3,3 +3,13 @@
 ################################################################################
 
 /.vs/Payfreee.Blazor
+/Payfreee.Blazor/bin/Debug/net5.0
+/Payfreee.Blazor/obj
+/Payfreee.Blazor/Properties/launchSettings.json
+/Payfreee.Blazor/wwwroot/lib
+/Payfreee.Common/bin/Debug/net5.0
+/Payfreee.Common/obj
+/Payfreee.Data/bin/Debug/net5.0
+/Payfreee.Data/obj
+/Payfreee.Server/bin/Debug/net5.0
+/Payfreee.Server/obj

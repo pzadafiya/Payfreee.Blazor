@@ -1,0 +1,67 @@
+﻿@import "../site-root";
+
+/* Button */
+.btn-primary, .btn-primary:hover {
+	color: var(--button-text-color);
+}
+
+.btn-secondary, .btn-secondary:hover {
+	color: var(--button-text-color);
+}
+
+.btn-success, .btn-success:hover {
+	color: var(--button-text-color);
+}
+
+.btn-info, .btn-info:hover {
+	color: var(--button-text-color);
+}
+
+.btn-warning, .btn-warning:hover {
+	color: var(--button-text-color);
+}
+
+.btn-danger, .btn-danger:hover {
+	color: var(--button-text-color);
+}
+
+.btn-dark, .btn-dark:hover {
+	color: var(--button-dark-text-color);
+}
+
+.btn-light, .btn-light:hover {
+	color: var(--button-light-text-color);
+}
+
+/* Badge */
+.badge-primary {
+	color: var(--button-text-color);
+}
+
+.badge-secondary {
+	color: var(--button-text-color);
+}
+
+.badge-success {
+	color: var(--button-text-color);
+}
+
+.badge-info {
+	color: var(--button-text-color);
+}
+
+.badge-warning {
+	color: var(--button-text-color);
+}
+
+.badge-danger {
+	color: var(--button-text-color);
+}
+
+.badge-dark {
+	color: var(--button-dark-text-color);
+}
+
+.badge-light {
+	color: var(--button-text-color);
+}

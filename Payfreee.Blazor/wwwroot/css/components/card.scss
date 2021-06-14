@@ -1,0 +1,27 @@
+﻿.card {
+	border: 1px solid var(--item-border-color);
+	background-color: var(--item-background-color);
+}
+
+.card-title {
+	font-size: .875rem;
+	color: var(--color);
+}
+
+.card-title-desc {
+	color: var(--item-text-color);
+}
+
+.card-text {
+	font-size: .75rem;
+	color: var(--item-text-color);
+}
+
+.card-header {
+	border-bottom: .05rem solid var(--item-border-color);
+	color: var(--color);
+}
+
+.card-footer {
+	border-top: .05rem solid var(--item-border-color);
+}

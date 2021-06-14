@@ -1,0 +1,13 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/js/payfreee.bundle.js",
+    "inputFiles": [
+      "wwwroot/js/**/*.js",
+      "!wwwroot/js/**/blazor.extensions.storage.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": true
+    }
+  }
+]

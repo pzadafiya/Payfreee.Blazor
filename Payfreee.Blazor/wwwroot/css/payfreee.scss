@@ -1,0 +1,277 @@
+﻿@import "payfreee-root";
+@import "site-root";
+
+* {
+	box-sizing: border-box;
+}
+
+h1 {
+	font-size: var(--heading-1-font-size);
+	font-weight: var(--heading-font-weight);
+}
+
+h2 {
+	font-size: var(--heading-2-font-size);
+	font-weight: var(--heading-font-weight);
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+input, textarea, select {
+	display: block;
+	font-family: inherit;
+	background-clip: padding-box;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+	width: var(--element-width);
+	margin: var(--element-margin);
+	padding: var(--element-padding);
+	font-weight: var(--element-font-weight);
+	font-size: var(--element-font-size);
+	line-height: var(--element-line-height);
+	color: var(--input-text-color);
+	background-color: var(--background-color);
+	border: 1px solid var(--border-color);
+	height: calc(1.5em + .75rem + 2px);
+}
+
+form input {
+	display: block;
+	width: var(--element-width) !important;
+	height: calc(1.5em + .75rem + 2px);
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	background-clip: padding-box;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+button[type="submit"], .payfreee-form-container > button {
+	display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	user-select: none;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.half-box {
+	width: 50%;
+	max-width: var(--form-max-width);
+}
+
+.payfreee-container {
+	width: 100%;
+	/*height: 100%;*/
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.payfreee-main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+// Shared
+///////////////////////////////////////////////////////////
+.payfreee-page-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.payfreee-page-container h2, h3 {
+	margin-bottom: 3rem;
+}
+
+.payfreee-page-container p {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.payfreee-form-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-width: var(--form-max-width);
+}
+
+.payfreee-form-container p {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.payfreee-form-container form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.payfreee-form-container input {
+	margin-bottom: 1.5rem;
+	text-align: center;
+}
+
+.payfreee-form-container button {
+	margin-bottom: 1rem;
+}
+
+.payfreee-form-container a {
+	margin-top: 2rem;
+	text-align: center;
+	text-decoration: none;
+}
+
+.payfreee-field-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+///////////////////////////////////////////////////////////
+// Sign up page
+///////////////////////////////////////////////////////////
+.payfreee-signup-form {
+	.card .card-body {
+		text-align: center;
+
+		input {
+			width: 100% !important;
+		}
+	}
+}
+
+.payfreee-signup-form-container {
+	@extend .payfreee-form-container;
+}
+
+///////////////////////////////////////////////////////////
+// Confirm page
+///////////////////////////////////////////////////////////
+
+.payfreee-confirm-form {
+	.card .card-body {
+		text-align: center;
+
+		input {
+			width: 100% !important;
+		}
+	}
+}
+
+.payfreee-confirm-form-container {
+	@extend .payfreee-form-container;
+}
+
+///////////////////////////////////////////////////////////
+// Login up page
+///////////////////////////////////////////////////////////
+.payfreee-login-form {
+	.card .card-body {
+		text-align: center;
+		input {
+			width: 100% !important;
+		}
+	}
+}
+.payfreee-login-form-container {
+	@extend .payfreee-form-container;
+}
+
+///////////////////////////////////////////////////////////
+// Forgot page
+///////////////////////////////////////////////////////////
+.payfreee-forgot-form {
+	.card .card-body {
+		text-align: center;
+
+		input {
+			width: 100% !important;
+		}
+	}
+}
+.payfreee-forgot-form-container {
+	@extend .payfreee-form-container;
+}
+
+///////////////////////////////////////////////////////////
+// Flashing
+///////////////////////////////////////////////////////////
+.payfreee-flashing {
+	position: relative;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: var(--flashing-light-dot-color);
+	color: var(--flashing-dark-dot-color);
+	animation: dotFlashing 1s infinite linear alternate;
+	animation-delay: .5s;
+}
+
+.payfreee-flashing-form {
+	@extend .payfreee-flashing;
+	margin-bottom: 1.5rem;
+}
+
+.payfreee-flashing::before, .payfreee-flashing::after {
+	content: '';
+	display: inline-block;
+	position: absolute;
+	top: 0;
+}
+
+.payfreee-flashing::before {
+	left: -20px;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: var(--flashing-dark-dot-color);
+	color: var(--flashing-dark-dot-color);
+	animation: dotFlashing 1s infinite alternate;
+	animation-delay: 0s;
+}
+
+.payfreee-flashing::after {
+	left: 20px;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	background-color: var(--flashing-dark-dot-color);
+	color: var(--flashing-dark-dot-color);
+	animation: dotFlashing 1s infinite alternate;
+	animation-delay: 1s;
+}
+
+@keyframes dotFlashing {
+	0% {
+		background-color: var(--flashing-dark-dot-color);
+	}
+
+	50%, 100% {
+		background-color: var(--flashing-light-dot-color);
+	}
+}

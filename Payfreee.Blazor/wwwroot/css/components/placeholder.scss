@@ -1,0 +1,32 @@
+﻿input::-webkit-input-placeholder {
+	color: var(--placeholder-color);
+	opacity: 1;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+input:-ms-input-placeholder {
+	color: var(--placeholder-color);
+	opacity: 1;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input::-ms-input-placeholder {
+	color: var(--placeholder-color);
+	opacity: 1;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input::placeholder {
+	color: var(--placeholder-color);
+	opacity: 1;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+input:-ms-input-placeholder {
+	color: var(--placeholder-color);
+}

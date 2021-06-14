@@ -1,0 +1,144 @@
+﻿.blazored-toast-container {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	z-index: 999;
+
+	.blazored-toast {
+		display: flex;
+		flex-direction: row;
+		animation: fadein 1.5s;
+		margin-bottom: 1rem;
+		padding: 1rem 1.25rem;
+		color: var(--item-background-color);
+		box-shadow: rgba(0,0,0,0.25) 0px 10px 40px;
+		border-radius: 0.2rem;
+
+		.blazored-toast-icon {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			padding: 0 1rem 0 0;
+			font-size: var(--font-size);
+		}
+
+		.blazored-toast-body {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+
+			.blazored-toast-message {
+				margin-bottom: 0;
+				color: white;
+				flex-direction: column;
+				font-size: var(--font-size);
+				line-height: 1.5rem;
+			}
+
+			p {
+				margin-bottom: 0;
+				font-size: var(--font-size);
+			}
+
+			.blazored-toast-header {
+				display: flex;
+				align-items: flex-start;
+				justify-content: space-between;
+
+				h5 {
+					font-weight: bold;
+					text-transform: uppercase;
+					font-size: var(--font-size);
+					margin-bottom: 0;
+					line-height: 32px;
+				}
+
+				blazored-toast-close {
+					background-color: transparent;
+					border: 0;
+					-webkit-appearance: none;
+					color: inherit;
+					font-size: var(--font-size);
+				}
+			}
+		}
+	}
+
+	.toast-info {
+		background-color: var(--toast-info-background-color);
+	}
+
+	.toast-success {
+		background-color: var(--toast-success-background-color);
+	}
+
+	.toast-warning {
+		background-color: var(--toast-warning-background-color);
+	}
+
+	.toast-error {
+		background-color: var(--toast-error-background-color);
+	}
+}
+
+.position-topleft,
+.position-topright,
+.position-topcenter {
+	top: 0;
+}
+
+.position-bottomleft,
+.position-bottomright,
+.position-bottomcenter {
+	bottom: 0;
+}
+
+@keyframes fadein {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media (min-width: 576px) {
+
+	.position-topleft {
+		top: 2rem;
+		left: 2rem;
+	}
+
+	.position-topright {
+		top: 2rem;
+		right: 2rem;
+	}
+
+	.position-topcenter {
+		top: 2rem;
+		left: 50%;
+		margin-left: -15rem;
+	}
+
+	.position-bottomleft {
+		bottom: 2rem;
+		left: 2rem;
+	}
+
+	.position-bottomright {
+		bottom: 2rem;
+		right: 2rem;
+	}
+
+	.position-bottomcenter {
+		bottom: 2rem;
+		left: 50%;
+		margin-left: -15rem;
+	}
+
+	.blazored-toast {
+		width: 25rem;
+		border-radius: 1rem;
+	}
+}

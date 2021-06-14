@@ -1,0 +1,8 @@
+﻿*.min.css
+**/*.min.css
+/site.css
+/payfreee.css
+
+**/metismenu/custom.css
+**/bootstrap/custom.css
+

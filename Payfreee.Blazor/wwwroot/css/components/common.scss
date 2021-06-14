@@ -1,0 +1,106 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mallanna&display=swap');
+
+body {
+	color: var(--color);
+	background-color: var(--background-color);
+	font-size: .875rem;
+	font-family: var(--font-family);
+	font-weight: 400;
+	letter-spacing: 1px
+}
+
+#app {
+	height: 100%;
+	width: 100%
+}
+
+#wrapper {
+	overflow-x: hidden;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.font-16 {
+	font-size: 16px !important;
+}
+
+.rounded-circle {
+	border-radius: 50% !important;
+}
+
+.no-border {
+	border-width: 0px !important;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.width-100 {
+	width: 100%;
+}
+
+/* Page Container - Start */
+.page-content-wrapper {
+	/*min-width: 100vw;*/
+	min-width: 0;
+	width: 100%;
+	margin-left: 240px;
+}
+
+.vertical-collpsed .page-content-wrapper {
+	margin-left: 70px;
+}
+
+.container, .container-fluid {
+	padding: 1.5rem;
+	min-height: calc(100vh - 60px - 24px);
+}
+
+@media (max-width: 823px) {
+	.page-content-wrapper {
+		margin-left: 0px !important;
+	}
+}
+/* Page Container - End */
+
+/* Page Footer - Start */
+.page-footer {
+	font-size: .75rem;
+	height: 24px;
+	text-align: center;
+}
+/* Page Footer - End */
+
+.page-title {
+	font-size: 18px;
+	font-weight: 700;
+	padding-bottom: 12px;
+
+	h4 {
+		display: flow-root;
+
+
+		a {
+			color: var(--color);
+			text-decoration: none;
+			font-size: 15px;
+			padding-top: 10px;
+		}
+	}
+}
+
+a {
+	cursor: pointer;
+}
+
+.display-block {
+	display: block !important;
+}
+
+.display-none {
+	display: none !important;
+}

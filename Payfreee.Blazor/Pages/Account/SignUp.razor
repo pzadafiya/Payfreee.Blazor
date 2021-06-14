@@ -1,0 +1,114 @@
+﻿@page "/signup"
+@layout AppLayout
+@inherits ComponentBase
+
+@using System.ComponentModel.DataAnnotations
+@inject IAuthenticationService AuthenticationService
+@inject NavigationManager NavigationManager
+
+<link href="/css/payfreee.min.css" rel="stylesheet" />
+
+<div class="payfreee-page-container payfreee-signup-form">
+	<div class="card no-border half-box">
+		<div class="card-body">
+			<h2 class="text-center">Sign up</h2>
+
+			<!--<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+				<DataAnnotationsValidator />
+
+				<div class="form-group">
+					<label for="Username">Email</label>
+					<InputText id="Username" @bind-Value="model.Email" class="form-control" />
+					<ValidationMessage For="@(() => model.Email)" />
+				</div>
+				<div class="form-group">
+					<label for="Password">Password</label>
+					<InputText id="Password" type="password" class="form-control" @bind-Value="model.Password" />
+					<ValidationMessage For="@(() => model.Password)" />
+				</div>
+				<div class="submit-container text-right">
+					<button class="btn btn-primary" disabled="@loading" type="submit">Login</button>
+				</div>
+				<a href="/signup">-->
+			<!--!-->
+			<!--New to WebApp? Sign up
+				</a>
+			</EditForm>-->
+		<EditForm Model="@model" OnValidSubmit="HandleValidSubmit">
+			<DataAnnotationsValidator />
+			@if (!string.IsNullOrEmpty(error))
+			{
+				<div class="alert alert-danger mt-3 mb-0">@error</div>
+			}
+			<div class="form-group">
+				<InputText id="EmailPhone" @bind-Value="model.Email" placeholder="Email" autofocus="" class="form-control" />
+				<ValidationMessage For="@(() => model.Email)" />
+			</div>
+			<div class="form-group">
+				<InputText id="FirstName" @bind-Value="model.FirstName" placeholder="First Name" class="form-control" />
+				<ValidationMessage For="@(() => model.FirstName)" />
+			</div>
+			<div class="form-group">
+				<InputText id="LastName" @bind-Value="model.LastName" placeholder="Last Name" class="form-control" />
+				<ValidationMessage For="@(() => model.LastName)" />
+			</div>
+			<div class="form-group">
+				<InputText type="password" @bind-Value="model.Password" placeholder="Password" class="form-control" />
+				<ValidationMessage For="@(() => model.Password)" />
+			</div>
+			<div class="form-group">
+				<InputText type="password" @bind-Value="model.ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+				<ValidationMessage For="@(() => model.ConfirmPassword)" />
+			</div>
+			<div class="submit-container text-right">
+				<button class="btn btn-primary" disabled="@loading" type="submit">Submit</button>
+			</div>
+			<a href="/login">Already have an account? Log in</a>
+		</EditForm>
+
+		</div>
+	</div>
+</div>
+
+@code{
+
+	private UserSignUpModel model = new UserSignUpModel();
+
+	[Parameter]
+	public string Id { get; set; }
+
+	public string SignUpUrl { get; set; }
+
+	protected override void OnParametersSet()
+	{
+		SignUpUrl = string.Format("/signup{0}", string.IsNullOrWhiteSpace(Id) ? "" : "/" + Id);
+	}
+
+	private bool loading;
+	private string error;
+
+	protected override void OnInitialized()
+	{
+		// redirect to home if already logged in
+		if (AuthenticationService.User != null)
+		{
+			NavigationManager.NavigateTo("");
+		}
+	}
+
+	private async void HandleValidSubmit()
+	{
+		loading = true;
+		try
+		{
+			await AuthenticationService.Login(model.Email, model.Password);
+			NavigationManager.NavigateTo("/");
+		}
+		catch (Exception ex)
+		{
+			error = ex.Message;
+			loading = false;
+			StateHasChanged();
+		}
+	}
+}

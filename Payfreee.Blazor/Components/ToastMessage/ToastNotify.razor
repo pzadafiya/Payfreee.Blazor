@@ -1,0 +1,23 @@
+﻿
+<div class="blazored-toast @ToastModel.BaseClass @ToastModel.AdditionalClasses">
+	@if (!string.IsNullOrWhiteSpace(ToastModel.IconClass))
+	{
+		<div class="blazored-toast-icon">
+			<i class="@ToastModel.IconClass" aria-hidden="true"></i>
+		</div>
+	}
+
+	<div class="blazored-toast-body">
+		<p class="blazored-toast-message">
+			@ToastModel.Message
+		</p>
+	</div>
+</div>
+
+@code{
+	[Parameter] 
+	public Guid ToastId { get; set; }
+
+	[Parameter] 
+	public ToastModel ToastModel { get; set; }
+}
